@@ -2,24 +2,24 @@
   {
     "id": 6,
     "title": "頭皮マッサージで薄毛改善！正しいやり方と効果",
-    "excerpt": "頭皮マッサージで薄毛改善！効果的な理由と正しいやり方  頭皮マッサージが薄毛改善に効果的な理由  血行促進による栄養供給の改善 頭皮マッサージの最大の効果は血行促進です。髪の毛の成長に必要な栄養素は血液によって毛根に運ばれるため、血流が悪化すると髪の成長が阻害されます。マッサージによって頭皮の血管が…",
+    "excerpt": "頭皮マッサージが薄毛改善に効果的な理由と正しいやり方を解説。血行促進・毛根活性化の仕組みとおすすめのオイルもご紹介。",
     "date": "2026-04-13",
     "category": "頭皮ケア",
     "readTime": 6,
     "tag": "頭皮ケア",
     "url": "articles/article6.html",
-    "thumb": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&q=80"
+    "thumb": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80"
   },
   {
     "id": 5,
     "title": "育毛シャンプーの選び方｜薄毛・抜け毛に効く成分とは",
-    "excerpt": "育毛シャンプーの選び方と効果的な使い方ガイド  育毛シャンプーの主な有効成分  育毛シャンプーには、頭皮環境を整える様々な有効成分が配合されています。  **ミノキシジル系成分**は血行促進効果があり、毛根への栄養供給を改善します。**ケトコナゾール**は抗炎症作用で頭皮の炎症を抑制し、**アミノ酸…",
+    "excerpt": "育毛シャンプーの選び方と効果的な使い方を解説。有効成分の違いと頭皮タイプ別のおすすめをご紹介。",
     "date": "2026-04-09",
     "category": "育毛シャンプー",
     "readTime": 6,
     "tag": "育毛シャンプー",
     "url": "articles/article5.html",
-    "thumb": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&q=80"
+    "thumb": "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&q=80"
   },
   {
     "id": 4,
@@ -29,7 +29,8 @@
     "category": "クリニック選び",
     "readTime": 5,
     "tag": "クリニック選び",
-    "url": "articles/article4.html"
+    "url": "articles/article4.html",
+    "thumb": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80"
   },
   {
     "id": 3,
@@ -39,17 +40,19 @@
     "category": "女性の薄毛",
     "readTime": 7,
     "tag": "女性薄毛",
-    "url": "articles/article3.html"
+    "url": "articles/article3.html",
+    "thumb": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80"
   },
   {
     "id": 2,
     "title": "育毛剤とAGA治療薬の違いとは？効果・成分を比較",
     "excerpt": "市販の育毛剤と病院処方のAGA治療薬は何が違うのか？フィナステリド・ミノキシジルの効果と副作用を徹底比較。",
     "date": "2026-03-25",
-    "category": "比較・解説",
+    "category": "育毛剤",
     "readTime": 6,
     "tag": "育毛剤",
-    "url": "articles/article2.html"
+    "url": "articles/article2.html",
+    "thumb": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&q=80"
   },
   {
     "id": 1,
@@ -59,6 +62,7 @@
     "category": "AGA治療",
     "readTime": 5,
     "tag": "AGA治療",
-    "url": "articles/article1.html"
+    "url": "articles/article1.html",
+    "thumb": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80"
   }
 ]
