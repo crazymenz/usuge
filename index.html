@@ -284,12 +284,12 @@
 
 <script>
 const SERVICES = [
-  {id:1,rank:1,name:"AGAクリニック（男性向け）",category:"AGAクリニック",gender:"男性向け",tags:["AGA治療","処方薬","オンライン可"],rating:4.8,reviews:5240,price:"初診無料",features:["専門医による診断・処方","フィナステリド・ミノキシジル処方","オンライン診療対応"],badge:"Editor's Choice",url:"#"},
-  {id:2,rank:2,name:"女性専用育毛クリニック",category:"AGAクリニック",gender:"女性向け",tags:["女性専用","FAGA","ホルモン治療"],rating:4.6,reviews:2180,price:"初診3,300円〜",features:["女性特有の薄毛に特化","女性専門医が対応","プラセンタ・ミノキシジル処方"],badge:"Best for Women",url:"#"},
-  {id:3,rank:3,name:"リアップ（男性用育毛剤）",category:"育毛剤",gender:"男性向け",tags:["市販薬","ミノキシジル","第一類医薬品"],rating:4.5,reviews:8920,price:"月4,000円〜",features:["ミノキシジル5%配合","薬局で購入可能","臨床試験で効果実証済み"],badge:"Best Seller",url:"#"},
-  {id:4,rank:4,name:"スカルプD（育毛シャンプー）",category:"育毛シャンプー",gender:"男女共通",tags:["男女共通","頭皮ケア","ノンシリコン"],rating:4.3,reviews:12400,price:"月3,000円〜",features:["頭皮環境を整える","ノンシリコン処方","男女ともに使用可"],badge:"Popular",url:"#"},
-  {id:5,rank:5,name:"女性用育毛剤（市販）",category:"育毛剤",gender:"女性向け",tags:["女性用","頭皮マッサージ","ノンオイル"],rating:4.2,reviews:3800,price:"月2,500円〜",features:["女性の薄毛・抜け毛に特化","頭皮マッサージ効果","べたつかないサラサラ処方"],badge:"For Women",url:"#"},
-  {id:6,rank:6,name:"オンラインAGAクリニック",category:"AGAクリニック",gender:"男性向け",tags:["オンライン","自宅完結","低価格"],rating:4.1,reviews:4200,price:"月2,200円〜",features:["自宅から診療・薬を受け取れる","月2,200円〜の低価格","全国どこでも対応"],badge:"Best Value",url:"#"}
+  {id:1,rank:1,name:"AGAスマクリ",category:"AGAクリニック",gender:"男性向け",tags:["AGA治療","処方薬","オンライン可"],rating:4.8,reviews:5240,price:"初診無料",features:["専門医による診断・処方","フィナステリド・ミノキシジル処方","オンライン診療対応"],badge:"Editor's Choice",url:"https://internet-clinic.jp/"},
+  {id:2,rank:2,name:"女性専用育毛クリニック",category:"AGAクリニック",gender:"女性向け",tags:["女性専用","FAGA","ホルモン治療"],rating:4.6,reviews:2180,price:"初診3,300円〜",features:["女性特有の薄毛に特化","女性専門医が対応","プラセンタ・ミノキシジル処方"],badge:"Best for Women",url:"https://www.agakaixin.com/"},
+  {id:3,rank:3,name:"リアップ（男性用育毛剤）",category:"育毛剤",gender:"男性向け",tags:["市販薬","ミノキシジル","第一類医薬品"],rating:4.5,reviews:8920,price:"月4,000円〜",features:["ミノキシジル5%配合","薬局で購入可能","臨床試験で効果実証済み"],badge:"Best Seller",url:"https://www.taisho.co.jp/riup/"},
+  {id:4,rank:4,name:"スカルプD（育毛シャンプー）",category:"育毛シャンプー",gender:"男女共通",tags:["男女共通","頭皮ケア","ノンシリコン"],rating:4.3,reviews:12400,price:"月3,000円〜",features:["頭皮環境を整える","ノンシリコン処方","男女ともに使用可"],badge:"Popular",url:"https://www.angfa.jp/"},
+  {id:5,rank:5,name:"女性用育毛剤（市販）",category:"育毛剤",gender:"女性向け",tags:["女性用","頭皮マッサージ","ノンオイル"],rating:4.2,reviews:3800,price:"月2,500円〜",features:["女性の薄毛・抜け毛に特化","頭皮マッサージ効果","べたつかないサラサラ処方"],badge:"For Women",url:"https://www.angfa.jp/women/"},
+  {id:6,rank:6,name:"オンラインAGAクリニック",category:"AGAクリニック",gender:"男性向け",tags:["オンライン","自宅完結","低価格"],rating:4.1,reviews:4200,price:"月2,200円〜",features:["自宅から診療・薬を受け取れる","月2,200円〜の低価格","全国どこでも対応"],badge:"Best Value",url:"https://aga.nishiazabu-hifuka.com/"}
 ];
 
 const ARTICLES = [
@@ -331,6 +331,7 @@ function renderRankings(services) {
         <div class="card-meta">
           <span class="meta-item">Fee: <strong>${s.price}</strong></span>
           <span class="meta-item">Target: <strong>${s.gender}</strong></span>
+          ${s.url && s.url !== '#' ? `<a href="${s.url}" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:var(--gold);color:var(--black);font-size:12px;font-weight:700;padding:6px 16px;border-radius:4px;text-decoration:none;margin-left:auto;">公式サイトへ →</a>` : ''}
         </div>
       </div>
     </div>
