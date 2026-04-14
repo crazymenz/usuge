@@ -36,20 +36,79 @@ function callAnthropicAPI(prompt) {
   });
 }
 
+const THEME_THUMBS = {
+  "AGA治療": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80",
+  "育毛剤": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&q=80",
+  "女性薄毛": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80",
+  "クリニック選び": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80",
+  "頭皮ケア": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80",
+  "育毛シャンプー": "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&q=80"
+};
+
 function textToHtml(text) {
-  return text.split('\n').map(line => {
-    if (line.startsWith('## ')) return '<h2>' + line.slice(3) + '</h2>';
-    if (line.startsWith('### ')) return '<h3>' + line.slice(4) + '</h3>';
-    if (line.startsWith('- ') || line.startsWith('・')) return '<li>' + line.slice(2) + '</li>';
-    if (line.trim() === '') return '';
-    return '<p>' + line + '</p>';
-  }).join('\n').replace(/(<li>.*<\/li>\n?)+/g, match => '<ul>' + match + '</ul>');
+  const lines = text.split('\n');
+  let html = '';
+  let inList = false;
+  let inOl = false;
+
+  for (let line of lines) {
+    // 見出し
+    if (line.startsWith('## ')) {
+      if (inList) { html += '</ul>'; inList = false; }
+      if (inOl) { html += '</ol>'; inOl = false; }
+      html += '<h2>' + line.slice(3).replace(/\*\*(.+?)\*\*/g, '<u>$1</u>') + '</h2>\n';
+      continue;
+    }
+    if (line.startsWith('### ')) {
+      if (inList) { html += '</ul>'; inList = false; }
+      if (inOl) { html += '</ol>'; inOl = false; }
+      html += '<h3>' + line.slice(4).replace(/\*\*(.+?)\*\*/g, '<u>$1</u>') + '</h3>\n';
+      continue;
+    }
+    // #で始まる行は削除
+    if (line.startsWith('# ')) continue;
+    // 番号付きリスト（1. **xxx**：yyy）
+    const numMatch = line.match(/^(\d+)\.\s+\*\*(.+?)\*\*[：:]\s*(.+)/);
+    if (numMatch) {
+      if (inList) { html += '</ul>'; inList = false; }
+      if (!inOl) { html += '<ol>'; inOl = true; }
+      html += '<li><u>' + numMatch[2] + '</u>：' + numMatch[3].replace(/\*\*(.+?)\*\*/g, '<u>$1</u>') + '</li>\n';
+      continue;
+    }
+    const numMatch2 = line.match(/^(\d+)\.\s+(.+)/);
+    if (numMatch2) {
+      if (inList) { html += '</ul>'; inList = false; }
+      if (!inOl) { html += '<ol>'; inOl = true; }
+      html += '<li>' + numMatch2[2].replace(/\*\*(.+?)\*\*/g, '<u>$1</u>') + '</li>\n';
+      continue;
+    }
+    // 箇条書き
+    if (line.startsWith('- ') || line.startsWith('・')) {
+      if (inOl) { html += '</ol>'; inOl = false; }
+      if (!inList) { html += '<ul>'; inList = true; }
+      html += '<li>' + line.slice(2).replace(/\*\*(.+?)\*\*/g, '<u>$1</u>') + '</li>\n';
+      continue;
+    }
+    // 空行
+    if (line.trim() === '') {
+      if (inList) { html += '</ul>'; inList = false; }
+      if (inOl) { html += '</ol>'; inOl = false; }
+      continue;
+    }
+    // 通常段落
+    if (inList) { html += '</ul>'; inList = false; }
+    if (inOl) { html += '</ol>'; inOl = false; }
+    html += '<p>' + line.replace(/\*\*(.+?)\*\*/g, '<u>$1</u>') + '</p>\n';
+  }
+  if (inList) html += '</ul>';
+  if (inOl) html += '</ol>';
+  return html;
 }
 
 function generateArticleHtml(article, content) {
   const canonical = 'https://usuge.kujira-media.com/articles/article' + article.id + '.html';
   const htmlContent = textToHtml(content);
-  return '<!DOCTYPE html>\n<html lang="ja">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>' + article.title + ' | うすげナビ</title>\n<meta name="description" content="' + article.excerpt + '">\n<link rel="canonical" href="' + canonical + '">\n<style>\n:root{--primary:#1B2A1B;--accent:#2E7D32;--accent-light:#E8F5E9;--text:#1A1A1A;--text-secondary:#4A4A4A;--text-muted:#888;--bg:#F7F9F7;--border:#E0E8E0;--radius:12px;}\n*{box-sizing:border-box;margin:0;padding:0;}\nbody{font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.8;}\na{color:var(--accent);text-decoration:none;}a:hover{text-decoration:underline;}\nheader{background:var(--primary);padding:0 24px;}\n.header-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;height:56px;}\n.logo{font-size:17px;font-weight:700;color:#fff;}.logo span{color:#81C784;}\n.article-wrap{max-width:860px;margin:0 auto;padding:40px 24px;}\n.breadcrumb{font-size:12px;color:var(--text-muted);margin-bottom:24px;}\n.breadcrumb a{color:var(--text-muted);}\n.article-cat{display:inline-block;background:var(--accent-light);color:var(--accent);font-size:12px;font-weight:700;padding:3px 10px;border-radius:4px;margin-bottom:12px;}\nh1{font-size:clamp(20px,3vw,28px);font-weight:800;line-height:1.4;margin-bottom:16px;}\n.article-meta{display:flex;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:32px;}\n.article-body h2{font-size:20px;font-weight:700;margin:40px 0 16px;padding-left:12px;border-left:4px solid var(--accent);}\n.article-body h3{font-size:17px;font-weight:700;margin:28px 0 12px;}\n.article-body p{margin-bottom:16px;color:var(--text-secondary);}\n.article-body ul{margin:0 0 16px 20px;color:var(--text-secondary);}\n.article-body ul li{margin-bottom:8px;}\n.cta-box{background:var(--accent-light);border:2px solid var(--accent);border-radius:var(--radius);padding:24px;margin:40px 0;text-align:center;}\n.cta-box h3{font-size:18px;font-weight:700;margin-bottom:8px;}\n.cta-box p{font-size:14px;color:var(--text-secondary);margin-bottom:16px;}\n.btn-primary{display:inline-block;background:var(--accent);color:#fff;font-size:15px;font-weight:700;padding:12px 32px;border-radius:8px;text-decoration:none;}\nfooter{background:var(--primary);color:rgba(255,255,255,.5);padding:24px;text-align:center;font-size:12px;margin-top:40px;}\n</style>\n</head>\n<body>\n<header><div class="header-inner"><a href="/" class="logo">うすげ<span>ナビ</span></a></div></header>\n<div class="article-wrap">\n<div class="breadcrumb"><a href="/">トップ</a> &gt; 育毛コラム &gt; ' + article.title + '</div>\n<span class="article-cat">' + article.category + '</span>\n<h1>' + article.title + '</h1>\n<div class="article-meta"><span>\ud83d\udcc5 ' + article.date + '</span><span>\u23f1 \u8aad\u4e86\u6642\u9593 \u7d04' + article.readTime + '\u5206</span></div>\n<div class="article-body">\n' + htmlContent + '\n<div class="cta-box">\n<h3>\u8584\u6bdb\u30fb\u80b2\u6bdb\u30b5\u30fc\u30d3\u30b9\u3092\u6bd4\u8f03\u3059\u308b</h3>\n<p>\u7de8\u96c6\u90e8\u304c\u53b3\u9078\u3057\u305fAGA\u30af\u30ea\u30cb\u30c3\u30af\u30fb\u80b2\u6bdb\u5264\u30fb\u80b2\u6bdb\u30b7\u30e3\u30f3\u30d7\u30fc\u306e\u30e9\u30f3\u30ad\u30f3\u30b0\u3092\u3054\u89a7\u304f\u3060\u3055\u3044\u3002</p>\n<a href="/" class="btn-primary">\u30e9\u30f3\u30ad\u30f3\u30b0\u3092\u898b\u308b \u2192</a>\n</div>\n</div>\n</div>\n<footer><p>\u00a9 2026 \u3046\u3059\u3052\u30ca\u30d3. All rights reserved.</p></footer>\n</body>\n</html>';
+  return '<!DOCTYPE html>\n<html lang="ja">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>' + article.title + ' | うすげナビ</title>\n<meta name="description" content="' + article.excerpt + '">\n<link rel="canonical" href="' + canonical + '">\n<style>\n:root{--primary:#1B2A1B;--accent:#2E7D32;--accent-light:#E8F5E9;--text:#1A1A1A;--text-secondary:#4A4A4A;--text-muted:#888;--bg:#F7F9F7;--border:#E0E8E0;--radius:12px;}\n*{box-sizing:border-box;margin:0;padding:0;}\nbody{font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.8;}\na{color:var(--accent);text-decoration:none;}a:hover{text-decoration:underline;}\nheader{background:var(--primary);padding:0 24px;}\n.header-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;height:56px;}\n.logo{font-size:17px;font-weight:700;color:#fff;}.logo span{color:#81C784;}\n.article-wrap{max-width:860px;margin:0 auto;padding:40px 24px;}\n.breadcrumb{font-size:12px;color:var(--text-muted);margin-bottom:24px;}\n.breadcrumb a{color:var(--text-muted);}\n.article-cat{display:inline-block;background:var(--accent-light);color:var(--accent);font-size:12px;font-weight:700;padding:3px 10px;border-radius:4px;margin-bottom:12px;}\nh1{font-size:clamp(20px,3vw,28px);font-weight:800;line-height:1.4;margin-bottom:16px;}\n.article-meta{display:flex;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:32px;}\n.article-body h2{font-size:20px;font-weight:700;margin:40px 0 16px;padding-left:12px;border-left:4px solid var(--accent);}\n.article-body h3{font-size:17px;font-weight:700;margin:28px 0 12px;}\n.article-body p{margin-bottom:16px;color:var(--text-secondary);}\n.article-body ul{margin:0 0 16px 20px;color:var(--text-secondary);}\n.article-body ol{margin:0 0 16px 20px;color:var(--text-secondary);}\n.article-body ul li,.article-body ol li{margin-bottom:8px;}\n.article-body u{text-decoration:underline;font-weight:600;color:var(--text);}\n.cta-box{background:var(--accent-light);border:2px solid var(--accent);border-radius:var(--radius);padding:24px;margin:40px 0;text-align:center;}\n.cta-box h3{font-size:18px;font-weight:700;margin-bottom:8px;}\n.cta-box p{font-size:14px;color:var(--text-secondary);margin-bottom:16px;}\n.btn-primary{display:inline-block;background:var(--accent);color:#fff;font-size:15px;font-weight:700;padding:12px 32px;border-radius:8px;text-decoration:none;}\nfooter{background:var(--primary);color:rgba(255,255,255,.5);padding:24px;text-align:center;font-size:12px;margin-top:40px;}\n</style>\n</head>\n<body>\n<header><div class="header-inner"><a href="/" class="logo">うすげ<span>ナビ</span></a></div></header>\n<div class="article-wrap">\n<div class="breadcrumb"><a href="/">トップ</a> &gt; 育毛コラム &gt; ' + article.title + '</div>\n<span class="article-cat">' + article.category + '</span>\n<h1>' + article.title + '</h1>\n<div class="article-meta"><span>📅 ' + article.date + '</span><span>⏱ 読了時間 約' + article.readTime + '分</span></div>\n<div class="article-body">\n' + htmlContent + '\n<div class="cta-box">\n<h3>薄毛・育毛サービスを比較する</h3>\n<p>編集部が厳選したAGAクリニック・育毛剤・育毛シャンプーのランキングをご覧ください。</p>\n<a href="/" class="btn-primary">ランキングを見る →</a>\n</div>\n</div>\n</div>\n<footer><p>© 2026 うすげナビ. All rights reserved.</p></footer>\n</body>\n</html>';
 }
 
 function updateIndexHtml(articles) {
@@ -94,7 +153,8 @@ async function generateArticle() {
 
   const articleFileName = 'article' + newId + '.html';
   const articleUrl = 'articles/' + articleFileName;
-  const newArticle = {id:newId,title,excerpt,date:now.toISOString().split('T')[0],category:theme.category,readTime:Math.floor(Math.random()*4)+4,tag:theme.tag,url:articleUrl,thumb:DEFAULT_THUMB};
+  const thumb = THEME_THUMBS[theme.tag] || DEFAULT_THUMB;
+  const newArticle = {id:newId,title,excerpt,date:now.toISOString().split('T')[0],category:theme.category,readTime:Math.floor(Math.random()*4)+4,tag:theme.tag,url:articleUrl,thumb:thumb};
 
   const articleHtml = generateArticleHtml(newArticle, content);
   fs.writeFileSync(path.join(ARTICLES_DIR, articleFileName), articleHtml);
