@@ -45,6 +45,15 @@ const THEME_THUMBS = {
   "育毛シャンプー": "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&q=80"
 };
 
+const THEME_THUMBS_ALT = {
+  "AGA治療": "https://images.unsplash.com/photo-1576671081837-49000212a370?w=400&q=80",
+  "育毛剤": "https://images.unsplash.com/photo-1567721913486-6585f069b3e0?w=400&q=80",
+  "女性薄毛": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&q=80",
+  "クリニック選び": "https://images.unsplash.com/photo-1551076805-e1869033e561?w=400&q=80",
+  "頭皮ケア": "https://images.unsplash.com/photo-1493780474015-ba834fd0ce2f?w=400&q=80",
+  "育毛シャンプー": "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=400&q=80"
+};
+
 function textToHtml(text) {
   const lines = text.split('\n');
   let html = '';
@@ -155,7 +164,10 @@ async function generateArticle() {
 
   const articleFileName = 'article' + newId + '.html';
   const articleUrl = 'articles/' + articleFileName;
-  const thumb = THEME_THUMBS[theme.tag] || DEFAULT_THUMB;
+  const sameTagCount = articles.filter(a => a.tag === theme.tag).length;
+  const thumb = sameTagCount % 2 === 0
+    ? (THEME_THUMBS[theme.tag] || DEFAULT_THUMB)
+    : (THEME_THUMBS_ALT[theme.tag] || DEFAULT_THUMB);
   const newArticle = {id:newId,title,excerpt,date:now.toISOString().split('T')[0],category:theme.category,readTime:Math.floor(Math.random()*4)+4,tag:theme.tag,url:articleUrl,thumb:thumb};
 
   const articleHtml = generateArticleHtml(newArticle, content);
