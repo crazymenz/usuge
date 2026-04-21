@@ -131,9 +131,11 @@ async function generateArticle() {
   const maxId = Math.max(...articles.map(a => a.id));
   const newId = maxId + 1;
 
-  const recentTags = articles.slice(-6).map(a => a.tag);
+  const recentTags = articles.slice(0, 6).map(a => a.tag);
   const availableThemes = ARTICLE_THEMES.filter(t => !recentTags.includes(t.tag));
-  const theme = availableThemes[Math.floor(Math.random() * availableThemes.length)] || ARTICLE_THEMES[0];
+  const theme = availableThemes.length > 0
+    ? availableThemes[Math.floor(Math.random() * availableThemes.length)]
+    : ARTICLE_THEMES.filter(t => t.tag !== articles[0].tag)[Math.floor(Math.random() * (ARTICLE_THEMES.length - 1))];
 
   const now = new Date();
   const title = theme.title.replace('{year}', now.getFullYear()).replace('{month}', now.getMonth() + 1);
