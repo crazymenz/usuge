@@ -1,12 +1,123 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>うすげナビ</title>
-<style>body{font-family:'Hiragino Kaku Gothic ProN',sans-serif;background:#F7F9F7;color:#1A1A1A;margin:0;}header{background:#1B2A1B;padding:0 24px;}.header-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;height:56px;}.logo{font-size:17px;font-weight:700;color:#fff;text-decoration:none;}.logo span{color:#81C784;}.wrap{max-width:860px;margin:0 auto;padding:40px 24px;}h1{font-size:24px;font-weight:800;margin-bottom:24px;}h2{font-size:18px;font-weight:700;margin:32px 0 12px;}p{color:#4A4A4A;line-height:1.8;margin-bottom:16px;}footer{background:#1B2A1B;color:rgba(255,255,255,.5);padding:24px;text-align:center;font-size:12px;margin-top:40px;}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | USUGE NAVI</title>
+  <meta name="description" content="USUGE NAVIのプライバシーポリシーです。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0A0A0A; --dark: #111111; --dark2: #1A1A1A; --dark3: #222222;
+      --gold: #C9A84C; --gold-light: #E8C97A; --gold-dark: #8B6914;
+      --white: #FFFFFF; --gray: #888888; --gray-light: #CCCCCC;
+      --border: rgba(201,168,76,0.3);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans JP', sans-serif; background: var(--black); color: var(--white); font-size: 15px; line-height: 1.8; }
+    a { color: inherit; text-decoration: none; }
+
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,10,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); padding: 0 40px; }
+    .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; }
+    .logo-sub { font-size: 9px; letter-spacing: 3px; color: var(--gray); display: block; text-transform: uppercase; margin-top: -2px; }
+    nav { display: flex; gap: 32px; }
+    nav a { font-size: 11px; letter-spacing: 2px; color: var(--gray-light); text-transform: uppercase; transition: color .3s; }
+    nav a:hover { color: var(--gold); }
+
+    .page-hero { padding: 140px 40px 80px; text-align: center; border-bottom: 1px solid var(--border); position: relative; }
+    .page-hero::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 1px; height: 40px; background: linear-gradient(180deg, var(--gold), transparent); }
+    .page-label { font-size: 10px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 600; letter-spacing: 2px; }
+
+    .container { max-width: 800px; margin: 0 auto; padding: 80px 40px 120px; }
+    .updated { font-size: 10px; letter-spacing: 2px; color: var(--gray); text-transform: uppercase; margin-bottom: 48px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .updated span { color: var(--gold); }
+
+    h2 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--white); letter-spacing: 1px; margin: 48px 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+    p { color: var(--gray-light); font-size: 14px; line-height: 2; margin-bottom: 14px; }
+    ul { color: var(--gray-light); font-size: 14px; line-height: 2; list-style: none; margin-bottom: 14px; }
+    ul li { padding-left: 20px; position: relative; margin-bottom: 4px; }
+    ul li::before { content: "—"; position: absolute; left: 0; color: var(--gold); font-size: 11px; top: 2px; }
+    .link { color: var(--gold); border-bottom: 1px solid var(--border); transition: border-color .3s; }
+    .link:hover { border-color: var(--gold); }
+
+    footer { background: var(--dark); border-top: 1px solid var(--border); padding: 48px 40px; text-align: center; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--gold); letter-spacing: 4px; margin-bottom: 24px; }
+    .footer-links { display: flex; gap: 32px; justify-content: center; margin-bottom: 24px; flex-wrap: wrap; }
+    .footer-links a { font-size: 10px; letter-spacing: 2px; color: var(--gray); text-transform: uppercase; transition: color .3s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { font-size: 10px; letter-spacing: 2px; color: rgba(255,255,255,.2); text-transform: uppercase; }
+
+    @media (max-width: 768px) {
+      header { padding: 0 20px; } nav { display: none; }
+      .page-hero { padding: 120px 20px 60px; } .page-title { font-size: 32px; }
+      .container { padding: 60px 20px 80px; } footer { padding: 40px 20px; }
+    }
+  </style>
 </head>
 <body>
-<header><div class="header-inner"><a href="/" class="logo">うすげ<span>ナビ</span></a></div></header>
-<div class="wrap"><h1>ページ</h1><p>準備中です。</p></div>
-<footer><p>© 2026 うすげナビ. All rights reserved.</p></footer>
-</body></html>
+<header>
+  <div class="header-inner">
+    <a href="/">
+      <div class="logo">USUGE NAVI</div>
+      <span class="logo-sub">薄毛・育毛 比較メディア</span>
+    </a>
+    <nav>
+      <a href="/#ranking">Ranking</a>
+      <a href="/#articles">Column</a>
+      <a href="/#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="page-label">Legal</div>
+  <h1 class="page-title">Privacy Policy</h1>
+</div>
+
+<div class="container">
+  <div class="updated">Last Updated: <span>2026.01.01</span></div>
+
+  <p>USUGE NAVI（以下「当サイト」）は、ユーザーのプライバシーを尊重し、個人情報の保護に努めます。本ポリシーでは、当サイトにおける情報の収集・利用についてご説明します。</p>
+
+  <h2>個人情報の収集について</h2>
+  <p>当サイトでは、お問い合わせフォームをご利用の際に、お名前・メールアドレスなどの個人情報をご提供いただく場合があります。収集した個人情報は、お問い合わせへの回答目的のみに使用し、第三者への提供は行いません。</p>
+
+  <h2>アクセス解析について</h2>
+  <p>当サイトではGoogleアナリティクスを利用してアクセス解析を行っています。データはCookieを通じて匿名で収集されるため、個人を特定するものではありません。データ収集を無効にする場合は<a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener" class="link">Googleアナリティクスオプトアウトアドオン</a>をご利用ください。</p>
+
+  <h2>広告について</h2>
+  <p>当サイトでは第三者配信の広告サービスを利用しています。広告配信事業者はCookieを使用して、ユーザーの興味に応じた広告を表示することがあります。詳しくは<a href="ad-policy.html" class="link">Ad Policy</a>をご覧ください。</p>
+
+  <h2>Cookieについて</h2>
+  <p>当サイトでは利便性向上のためCookieを使用することがあります。ブラウザの設定によりCookieを無効にすることも可能ですが、一部機能が正常に動作しない場合があります。</p>
+
+  <h2>免責事項</h2>
+  <p>当サイトに掲載する情報の正確性・有用性については最善を尽くしていますが、その内容を保証するものではありません。当サイトの情報を参考にした結果生じた損害について、当サイトは一切の責任を負いません。</p>
+  <ul>
+    <li>商品の購入・利用の判断はご自身の責任においてお願いいたします</li>
+    <li>効果・効能には個人差があります</li>
+    <li>外部リンク先サイトの内容については各サイトにお問い合わせください</li>
+  </ul>
+
+  <h2>プライバシーポリシーの変更</h2>
+  <p>本ポリシーの内容は、法令改正や運営上の都合により予告なく変更する場合があります。変更後のポリシーは当ページに掲載した時点から効力を生じるものとします。</p>
+
+  <h2>お問い合わせ</h2>
+  <p>個人情報の取り扱いに関するご質問は、<a href="contact.html" class="link">Contact</a>よりご連絡ください。</p>
+</div>
+
+<footer>
+  <div class="footer-logo">USUGE NAVI</div>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy</a>
+    <a href="ad-policy.html">Ad Policy</a>
+    <a href="contact.html">Contact</a>
+    <a href="about.html">About</a>
+  </div>
+  <p class="footer-copy">当サイトはアフィリエイトプログラムに参加しています。&nbsp;&nbsp;©&nbsp;2026&nbsp;USUGE NAVI</p>
+</footer>
+</body>
+</html>

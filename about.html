@@ -1,12 +1,180 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>うすげナビ</title>
-<style>body{font-family:'Hiragino Kaku Gothic ProN',sans-serif;background:#F7F9F7;color:#1A1A1A;margin:0;}header{background:#1B2A1B;padding:0 24px;}.header-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;height:56px;}.logo{font-size:17px;font-weight:700;color:#fff;text-decoration:none;}.logo span{color:#81C784;}.wrap{max-width:860px;margin:0 auto;padding:40px 24px;}h1{font-size:24px;font-weight:800;margin-bottom:24px;}h2{font-size:18px;font-weight:700;margin:32px 0 12px;}p{color:#4A4A4A;line-height:1.8;margin-bottom:16px;}footer{background:#1B2A1B;color:rgba(255,255,255,.5);padding:24px;text-align:center;font-size:12px;margin-top:40px;}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | USUGE NAVI</title>
+  <meta name="description" content="USUGE NAVIについて。薄毛・育毛に悩む方向けの情報比較メディアです。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0A0A0A; --dark: #111111; --dark2: #1A1A1A; --dark3: #222222;
+      --gold: #C9A84C; --gold-light: #E8C97A; --gold-dark: #8B6914;
+      --white: #FFFFFF; --gray: #888888; --gray-light: #CCCCCC;
+      --border: rgba(201,168,76,0.3);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans JP', sans-serif; background: var(--black); color: var(--white); font-size: 15px; line-height: 1.8; }
+    a { color: inherit; text-decoration: none; }
+
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,10,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); padding: 0 40px; }
+    .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; }
+    .logo-sub { font-size: 9px; letter-spacing: 3px; color: var(--gray); display: block; text-transform: uppercase; margin-top: -2px; }
+    nav { display: flex; gap: 32px; }
+    nav a { font-size: 11px; letter-spacing: 2px; color: var(--gray-light); text-transform: uppercase; transition: color .3s; }
+    nav a:hover { color: var(--gold); }
+
+    .page-hero { padding: 140px 40px 80px; text-align: center; border-bottom: 1px solid var(--border); position: relative; }
+    .page-hero::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 1px; height: 40px; background: linear-gradient(180deg, var(--gold), transparent); }
+    .page-label { font-size: 10px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 600; letter-spacing: 2px; }
+
+    .container { max-width: 800px; margin: 0 auto; padding: 80px 40px 120px; }
+
+    /* Mission */
+    .mission { text-align: center; padding: 0 0 64px; border-bottom: 1px solid var(--border); margin-bottom: 64px; }
+    .mission-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px; font-weight: 600;
+      color: var(--white); line-height: 1.4;
+      margin-bottom: 24px; letter-spacing: 1px;
+    }
+    .mission-quote em { color: var(--gold); font-style: italic; }
+    .mission p { color: var(--gray-light); font-size: 14px; line-height: 2; max-width: 520px; margin: 0 auto; }
+
+    /* Features */
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 64px; }
+    .feature-card { background: var(--dark2); border: 1px solid rgba(255,255,255,.06); padding: 32px 24px; text-align: center; transition: border-color .3s; }
+    .feature-card:hover { border-color: var(--border); }
+    .feature-num { font-family: 'Cormorant Garamond', serif; font-size: 40px; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
+    .feature-card h3 { font-size: 12px; letter-spacing: 1px; color: var(--white); margin-bottom: 12px; font-weight: 500; }
+    .feature-card p { font-size: 12px; color: var(--gray); line-height: 1.8; }
+
+    h2 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--white); letter-spacing: 1px; margin: 48px 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+    h2:first-of-type { margin-top: 0; }
+    p { color: var(--gray-light); font-size: 14px; line-height: 2; margin-bottom: 14px; }
+    .link { color: var(--gold); border-bottom: 1px solid var(--border); transition: border-color .3s; }
+    .link:hover { border-color: var(--gold); }
+
+    /* Info table */
+    .info-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .info-table tr { border-bottom: 1px solid rgba(255,255,255,.06); }
+    .info-table tr:last-child { border-bottom: none; }
+    .info-table th { text-align: left; padding: 14px 8px; width: 140px; color: var(--gray); font-weight: 400; letter-spacing: 1px; font-size: 10px; text-transform: uppercase; white-space: nowrap; }
+    .info-table td { padding: 14px 8px; color: var(--gray-light); }
+
+    /* Disclaimer */
+    .disclaimer { border: 1px solid var(--border); background: var(--dark2); padding: 24px 28px; position: relative; margin-top: 48px; }
+    .disclaimer::before { content: 'DISCLAIMER'; position: absolute; top: -1px; left: 24px; transform: translateY(-50%); background: var(--dark); color: var(--gold); font-size: 9px; font-weight: 700; letter-spacing: 2px; padding: 3px 10px; border: 1px solid var(--border); }
+    .disclaimer p { color: var(--gray); font-size: 12px; line-height: 1.9; margin: 0; }
+
+    footer { background: var(--dark); border-top: 1px solid var(--border); padding: 48px 40px; text-align: center; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--gold); letter-spacing: 4px; margin-bottom: 24px; }
+    .footer-links { display: flex; gap: 32px; justify-content: center; margin-bottom: 24px; flex-wrap: wrap; }
+    .footer-links a { font-size: 10px; letter-spacing: 2px; color: var(--gray); text-transform: uppercase; transition: color .3s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { font-size: 10px; letter-spacing: 2px; color: rgba(255,255,255,.2); text-transform: uppercase; }
+
+    @media (max-width: 768px) {
+      header { padding: 0 20px; } nav { display: none; }
+      .page-hero { padding: 120px 20px 60px; } .page-title { font-size: 32px; }
+      .container { padding: 60px 20px 80px; } footer { padding: 40px 20px; }
+      .features { grid-template-columns: 1fr; }
+      .mission-quote { font-size: 26px; }
+      .info-table th { width: 100px; }
+    }
+  </style>
 </head>
 <body>
-<header><div class="header-inner"><a href="/" class="logo">うすげ<span>ナビ</span></a></div></header>
-<div class="wrap"><h1>ページ</h1><p>準備中です。</p></div>
-<footer><p>© 2026 うすげナビ. All rights reserved.</p></footer>
-</body></html>
+<header>
+  <div class="header-inner">
+    <a href="/">
+      <div class="logo">USUGE NAVI</div>
+      <span class="logo-sub">薄毛・育毛 比較メディア</span>
+    </a>
+    <nav>
+      <a href="/#ranking">Ranking</a>
+      <a href="/#articles">Column</a>
+      <a href="/#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="page-label">About</div>
+  <h1 class="page-title">USUGE NAVI</h1>
+</div>
+
+<div class="container">
+
+  <div class="mission">
+    <div class="mission-quote">正直な情報で、<br><em>正しい選択を。</em></div>
+    <p>USUGE NAVIは、薄毛・抜け毛・AGA・スカルプケアに悩む方が自分に合った解決策を見つけられるよう、信頼性の高い情報をわかりやすくお届けする比較メディアです。</p>
+  </div>
+
+  <div class="features">
+    <div class="feature-card">
+      <div class="feature-num">01</div>
+      <h3>成分・効果を徹底検証</h3>
+      <p>有効成分・臨床データを基に信頼できる情報のみ掲載</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">02</div>
+      <h3>公正なランキング</h3>
+      <p>広告費に左右されない独自評価基準で比較</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">03</div>
+      <h3>週2回更新</h3>
+      <p>最新情報を反映した記事を毎週月・木に掲載</p>
+    </div>
+  </div>
+
+  <h2>サイト情報</h2>
+  <table class="info-table">
+    <tr>
+      <th>Site</th>
+      <td>USUGE NAVI</td>
+    </tr>
+    <tr>
+      <th>URL</th>
+      <td>https://usuge.kujira-media.com</td>
+    </tr>
+    <tr>
+      <th>運営</th>
+      <td>USUGE NAVI運営部</td>
+    </tr>
+    <tr>
+      <th>開設</th>
+      <td>2024年</td>
+    </tr>
+    <tr>
+      <th>更新頻度</th>
+      <td>週2回（月・木）</td>
+    </tr>
+    <tr>
+      <th>Contact</th>
+      <td><a href="contact.html" class="link">お問い合わせフォーム</a></td>
+    </tr>
+  </table>
+
+  <div class="disclaimer">
+    <p>当サイトで紹介する商品・サービスの効果には個人差があります。医薬品・医療機器については使用前に必ず添付文書をお読みください。持病のある方・妊娠中の方は医師に相談の上ご使用ください。当サイトは特定の商品・治療法の効果を保証するものではありません。</p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">USUGE NAVI</div>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy</a>
+    <a href="ad-policy.html">Ad Policy</a>
+    <a href="contact.html">Contact</a>
+    <a href="about.html">About</a>
+  </div>
+  <p class="footer-copy">当サイトはアフィリエイトプログラムに参加しています。&nbsp;&nbsp;©&nbsp;2026&nbsp;USUGE NAVI</p>
+</footer>
+</body>
+</html>
