@@ -1,5 +1,16 @@
 [
   {
+    "id": 35,
+    "title": "女性の薄毛対策｜原因別おすすめの改善方法",
+    "excerpt": "女性の薄毛対策｜原因別おすすめの改善方法について解説します。",
+    "date": "2026-07-22",
+    "category": "女性の薄毛",
+    "readTime": 4,
+    "tag": "女性薄毛",
+    "url": "articles/article35.html",
+    "thumb": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&q=80"
+  },
+  {
     "id": 34,
     "title": "頭皮マッサージで薄毛改善！正しいやり方と効果",
     "excerpt": "頭皮マッサージで薄毛改善！正しいやり方と効果について解説します。",
@@ -207,16 +218,5 @@
     "tag": "育毛剤",
     "url": "articles/article16.html",
     "thumb": "https://images.unsplash.com/photo-1567721913486-6585f069b3e0?w=400&q=80"
-  },
-  {
-    "id": 15,
-    "title": "AGA治療の最新動向2026年5月版｜効果的な治療法を解説",
-    "excerpt": "2026年最新のAGA治療法完全ガイド  従来治療薬の効果と副作用  フィナステリド AGA治療の基本薬として広く使用されているフィナステリドは、5α還元酵素II型を阻害し、DHT（ジヒドロテストステロン）の生成を抑制します。約80%の患者で脱毛進行の抑制効果が認められ、長期使用により毛髪密度の改善…",
-    "date": "2026-05-13",
-    "category": "AGA治療",
-    "readTime": 6,
-    "tag": "AGA治療",
-    "url": "articles/article15.html",
-    "thumb": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80"
   }
 ]
