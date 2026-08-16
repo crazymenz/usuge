@@ -1,5 +1,16 @@
 [
   {
+    "id": 42,
+    "title": "AGAクリニックで後悔しないための選び方ガイド",
+    "excerpt": "AGAクリニックで後悔しないための選び方ガイドについて解説します。",
+    "date": "2026-08-16",
+    "category": "クリニック選び",
+    "readTime": 7,
+    "tag": "クリニック選び",
+    "url": "articles/article42.html",
+    "thumb": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80"
+  },
+  {
     "id": 41,
     "title": "頭皮マッサージで薄毛改善！正しいやり方と効果",
     "excerpt": "頭皮マッサージで薄毛改善！正しいやり方と効果について解説します。",
@@ -207,16 +218,5 @@
     "tag": "育毛剤",
     "url": "articles/article23.html",
     "thumb": "https://images.unsplash.com/photo-1567721913486-6585f069b3e0?w=400&q=80"
-  },
-  {
-    "id": 22,
-    "title": "AGA治療の最新動向2026年6月版｜効果的な治療法を解説",
-    "excerpt": "2026年最新AGA治療法完全ガイド  従来の治療薬の現状  フィナステリド AGA治療の第一選択薬として確立されたフィナステリドは、5α還元酵素II型を阻害してDHTの生成を抑制します。**効果**として、約80%の患者で抜け毛の進行停止、約60%で発毛効果が認められています。**副作用**は比較…",
-    "date": "2026-06-08",
-    "category": "AGA治療",
-    "readTime": 5,
-    "tag": "AGA治療",
-    "url": "articles/article22.html",
-    "thumb": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80"
   }
 ]
